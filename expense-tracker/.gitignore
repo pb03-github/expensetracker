@@ -1,0 +1,63 @@
+# Maven
+target/
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.atom
+release.properties
+.flattened-pom.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+
+# Build
+build/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Spring Boot
+spring-boot-devtools.properties
+
+# Environment
+.env
+.env.local
+*.env
+
+# Database
+*.db
+*.sqlite
+h2/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.classpath
+.project
+.settings/
+.vscode/
+launch.json
+
+# Custom
+*.pid
+*.swp
+.ruby-version
+.jvmrc
