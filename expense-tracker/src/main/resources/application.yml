@@ -52,6 +52,13 @@ server:
   port: 8080
   servlet:
     context-path: /
+  web:
+    resources:
+      cache:
+        period: 0
+        cachecontrol:
+          no-cache: true
+          no-store: true
 
 # Swagger/OpenAPI
 springdoc:
@@ -63,5 +70,5 @@ springdoc:
   api-docs:
     path: /v3/api-docs
     title: Expense Tracker API
-    version: 1.0.0
+    version: OPENAPI_3_0
     description: Backend-first personal expense tracker

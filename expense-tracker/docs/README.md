@@ -14,4 +14,4 @@ Read this file first, then only the topic files needed for the task. Keep each f
 | [Decisions](decisions.md) | Resolving ambiguities before code is written |
 | [Progress](progress.md) | Resuming after a break |
 
-V1: Java 21, Spring Boot, Maven, Spring Web, Data JPA/Hibernate, PostgreSQL, Flyway, Jakarta Validation, JUnit 5 and Mockito. No frontend, auth implementation, deployment, or extra infrastructure in the initial coding slice. Authentication is required before any public deployment.
+V1: Java 21, Spring Boot, Maven, Spring Web, Data JPA/Hibernate, PostgreSQL, Flyway, Jakarta Validation, JUnit 5 and Mockito. The browser UI is served from Spring Boot static resources and has no separate frontend build. Authentication is not implemented and is required before any public deployment.

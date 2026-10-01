@@ -1,11 +1,12 @@
 # Expense Tracker
 
-Backend-first personal expense tracker. V1 is a Java 21 / Spring Boot modular monolith backed by PostgreSQL (or H2 for local development). The React client is out of scope for now.
+Personal expense tracker built as a Java 21 / Spring Boot modular monolith backed by PostgreSQL (or H2 for local development). A lightweight browser UI is served by Spring Boot; no separate frontend build is required.
 
 ## Status: ✅ IMPLEMENTATION COMPLETE
 
 All core functionality has been implemented and is ready for testing:
 - ✅ Spring Boot REST API (Java 21)
+- ✅ Browser dashboard for expense entry, history, filters, and summaries
 - ✅ JPA/Hibernate with Flyway migrations
 - ✅ All 6 required endpoints
 - ✅ Swagger/OpenAPI documentation
@@ -22,6 +23,9 @@ All core functionality has been implemented and is ready for testing:
 
 # Open Swagger UI
 http://localhost:8080/swagger-ui.html
+
+# Open the expense tracker
+http://localhost:8080/
 ```
 
 ## 📚 Documentation

@@ -33,6 +33,7 @@ public class ExpenseController {
     private final UserService userService;
     
     private static final int DEFAULT_PAGE_SIZE = 20;
+    private static final String DEFAULT_PAGE_SIZE_STR = "20";
     private static final int MAX_PAGE_SIZE = 100;
     
     public ExpenseController(ExpenseService expenseService, UserService userService) {
@@ -110,7 +111,7 @@ public class ExpenseController {
         @Parameter(description = "Page number (zero-indexed)")
         @RequestParam(defaultValue = "0") Integer page,
         @Parameter(description = "Page size (1-100)")
-        @RequestParam(defaultValue = String.valueOf(DEFAULT_PAGE_SIZE)) Integer size
+        @RequestParam(defaultValue = DEFAULT_PAGE_SIZE_STR) Integer size
     ) {
         // Verify user exists
         userService.getUserOrThrow(userId);

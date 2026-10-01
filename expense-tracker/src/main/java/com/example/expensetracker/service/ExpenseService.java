@@ -7,7 +7,6 @@ import com.example.expensetracker.entity.Group;
 import com.example.expensetracker.exception.ResourceNotFoundException;
 import com.example.expensetracker.repository.ExpenseRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -152,7 +151,16 @@ public class ExpenseService {
             Long categoryId = ((Number) row[0]).longValue();
             String categoryName = (String) row[1];
             BigDecimal amount = (BigDecimal) row[2];
-            categoryTotals.add(new CategoryTotalResponse(categoryId, categoryName, amount));
+            BigDecimal budgetAmount = null;
+            com.example.expensetracker.entity.BudgetPeriod budgetPeriod = null;
+            BigDecimal periodSpent = amount;
+            try {
+                Category cat = categoryService.getCategoryOrThrow(userId, categoryId);
+                budgetAmount = cat.getBudgetAmount();
+                budgetPeriod = cat.getBudgetPeriod();
+                periodSpent = categoryService.getSpentForPeriodPublic(userId, cat);
+            } catch (Exception ignored) {}
+            categoryTotals.add(new CategoryTotalResponse(categoryId, categoryName, amount, budgetAmount, budgetPeriod, periodSpent));
         }
         
         List<GroupTotalResponse> groupTotals = new ArrayList<>();
@@ -173,12 +181,12 @@ public class ExpenseService {
     private ExpenseResponse mapToExpenseResponse(Expense expense, Category category, Group group) {
         CategoryResponse categoryResponse = null;
         if (category != null) {
-            categoryResponse = new CategoryResponse(category.getCategoryId(), category.getName());
+            categoryResponse = new CategoryResponse(category.getCategoryId(), category.getName(), category.getBudgetAmount(), category.getBudgetPeriod(), null);
         }
         
         GroupResponse groupResponse = null;
         if (group != null) {
-            groupResponse = new GroupResponse(group.getGroupId(), group.getName());
+            groupResponse = new GroupResponse(group.getGroupId(), group.getName(), null);
         }
         
         return new ExpenseResponse(

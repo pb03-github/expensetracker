@@ -47,6 +47,13 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
         WHERE e.userId = :userId
     """)
     BigDecimal getTotalAmount(@Param("userId") UUID userId);
+
+    @Query("""
+        SELECT COALESCE(SUM(e.amount), 0)
+        FROM Expense e
+        WHERE e.userId = :userId AND e.groupId = :groupId
+    """)
+    BigDecimal getTotalAmountByGroup(@Param("userId") UUID userId, @Param("groupId") Long groupId);
     
     /**
      * Get category breakdown for summary
